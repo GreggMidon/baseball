@@ -28,7 +28,7 @@ def load(file, season):
         tm_city = fields[2]
         tm_name = fields[3]
 
-        cur.execute(team_ins,(team_id,al_nl,tm_city,tm_name,season,datetime.datetime.now()))
+        cur.execute(team_ins_sql,(team_id,al_nl,tm_city,tm_name,season,datetime.datetime.now()))
 
     conn.commit()
 
