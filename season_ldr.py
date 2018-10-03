@@ -1,12 +1,12 @@
 '''
-Name.......: season_loader.py
+Name.......: season_ldr.py
 Descr......: Script to manage processing of game files (event, team, roster).
 Author.....: Gregg Midon
 Date.......: 8/26/2018
 '''
 import argparse
-from filesys import *
-from fileproc import readlist
+from fileio.filesys import *
+from fileio.fileproc import readlist
 
 
 def main(args):
