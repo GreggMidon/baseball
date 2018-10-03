@@ -1,6 +1,6 @@
 import psycopg2
 from psycopg2.extras import execute_values
-from common import *
+from util.common import *
 from db.sqlrepo import *
 import datetime
 
