@@ -1,5 +1,5 @@
 '''
-Name.......: season_runner.py
+Name.......: season_loader.py
 Descr......: Script to manage processing of game files (event, team, roster).
 Author.....: Gregg Midon
 Date.......: 8/26/2018
