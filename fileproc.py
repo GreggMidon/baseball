@@ -26,26 +26,18 @@ def readlist(filelist):
         match = roster_pattern.search(file.name)
         if match:
             season = int(match.group(2))
-            print('File Type: ', 'ROSTER')
-            print('Team     : ', match.group(1))
-            print('Season   : ', season)
             matched = True
             rl.load(file, season)
 
         match = event_pattern.search(file.name)
         if match:
             season = int(match.group(1))
-            print('File Type: ', 'EVENT')
-            print('Team     : ', match.group(2))
-            print('Season   : ', season)
             matched = True
             el.load(file, season)
 
         match = team_pattern.search(file.name)
         if match:
             season = int(match.group(1))
-            print('File Type: ', 'TEAM')
-            print('Season   : ', season)
             matched = True
             tl.load(file, season)
 
