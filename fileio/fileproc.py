@@ -9,7 +9,7 @@ import re
 import loaders.roster_ldr as rl
 import loaders.team_ldr as tl
 import loaders.event_ldr as el
-from common import *
+from util.common import *
 
 
 def readlist(filelist):
