@@ -5,7 +5,7 @@ Author.....: Gregg Midon
 Date.......: 8/26/2018
 '''
 from db.sqlrepo import *
-from db.db_funcs import getconnection
+from db.db_funcs import getconnection, insertroster
 import datetime
 
 
@@ -13,30 +13,31 @@ def load(file, season):
 
     # connect to database
     conn = getconnection()
-    cur = conn.cursor()
 
     # open file for source data
     rfil = open(file, 'r')
 
     # read each line from file
+    _ros = []
     for line in rfil:
         line = line[:-1]
         fields = line.split(',')
 
-        playid = fields[0]
-        lname = fields[1]
-        fname = fields[2]
-        bat_hnd = fields[3]
-        thr_hnd = fields[4]
-        teamid = fields[5]
-        position = fields[6]
+        d = dict()
+        d['player_id'] = fields[0]
+        d['last_nm'] = fields[1]
+        d['first_nm'] = fields[2]
+        d['bat_hnd'] = fields[3]
+        d['throw_hnd'] = fields[4]
+        d['team_id'] = fields[5]
+        d['fld_pos'] = fields[6]
+        d['season'] = season
+        d['entry_dt'] = datetime.datetime.now()
+        _ros.append(d)
 
-        # insert into Roster table
-        cur.execute(roster_ins,(playid,lname,fname,bat_hnd,thr_hnd,teamid,position,season,datetime.datetime.now()))
-
-    conn.commit()
+    # insert into Roster table
+    insertroster(conn, _ros)
 
     # close communication with the database
-    cur.close()
     conn.close()
     rfil.close()
