@@ -1,5 +1,5 @@
 from pathlib import Path
-from common import *
+from util.common import *
 
 
 def getrosterfiles(season):
