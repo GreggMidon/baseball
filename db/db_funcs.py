@@ -8,9 +8,9 @@ def getconnection():
     return psycopg2.connect(constring)
 
 
-def gameevents(game_id, conn):
+def gameevents(conn, game_ndx):
     cur = conn.cursor()
-    cur.execute(events_select,(game_id,))
+    cur.execute(evt_sel_sql,(game_ndx,))
     return cur.fetchall()
 
 
@@ -18,6 +18,11 @@ def gameindex(conn):
     cur = conn.cursor()
     cur.execute("select nextval('prod.mstr_gm_seq')")
     return cur.fetchone()
+
+def gameindexlist(conn):
+    cur = conn.cursor()
+    cur.execute(evt_nsel_sql)
+    return cur.fetchall()
 
 
 def insertinfo(conn, info):
@@ -66,8 +71,16 @@ def insertdata(conn, datalist):
     conn.commit()
     cur.close()
 
+
 def insertroster(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, roster_ins_sql, datalist, template=roster_ins_templ, page_size=roster_pg_sz)
+    conn.commit()
+    cur.close()
+
+
+def  inserteventdtl(conn, datalist):
+    cur = conn.cursor()
+    execute_values(cur, dtl_ins_sql, datalist, template=dtl_ins_templ, page_size=dtl_pg_sz)
     conn.commit()
     cur.close()
