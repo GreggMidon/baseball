@@ -25,12 +25,6 @@ insert into prod.team (team_id,al_nl,team_cty,team_nm,season,entry_dt)
 values (%s, %s, %s, %s, %s, %s)
 '''
 
-# parsed game play event records (not loaded in bulk)
-dtl_ins_sql = '''
-insert into prod.evt_dtl (game_id,seq_num,event_str,event_cd,mod_cd1,mod_cd2,mod_cd3,ra_1,ra_2,ra_3,entry_dt)
-values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-'''
-
 # game header insert (not loaded in bulk)
 gm_hdr_ins_sql = '''
 insert into prod.game_hdr(game_ndx,game_id,season,vis_tm,home_tm,game_dt,game_num,start_tm,entry_dt)
@@ -76,9 +70,28 @@ insert into prod.ev_sub(game_ndx,seq_num,player_id,player_nm,visit_home,"order",
 sub_ins_templ = "(%(game_ndx)s,%(seq_num)s,%(player_id)s,%(player_nm)s,%(visit_home)s,%(order)s,%(position)s,%(entry_dt)s)"
 sub_pg_sz = 100
 
-events_select = '''
-select  seq_num,inning,visitinghome,player_id,event_string 
-from    prod.ev_play 
-where   game_id = %s
-order by seq_num
+ndx_range_sql = '''
+select  min(game_ndx) min_ndx,
+        max(game_ndx) max_ndx
+from    prod.game_hdr
+where   season = %s
 '''
+
+evt_sel_sql = '''
+select  game_ndx,
+        seq_num,
+        event_str
+from    prod.ev_play 
+where   game_ndx = %s
+'''
+
+evt_nsel_sql = '''
+select  game_ndx
+from    prod.game_ndx_list
+'''
+
+dtl_ins_sql = '''
+insert into prod.ev_dtl (game_ndx, seq_num, event_str, event_cd, mod_cd1, mod_cd2, mod_cd3, ra_1, ra_2, ra_3) values  %s
+'''
+dtl_ins_templ = "(%(game_ndx)s,%(seq_num)s,%(event_str)s,%(event_cd)s,%(mod_cd1)s,%(mod_cd2)s,%(mod_cd3)s,%(ra_1)s,%(ra_2)s,%(ra_3)s)"
+dtl_pg_sz = 100
