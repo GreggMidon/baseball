@@ -1,9 +1,9 @@
-'''
+"""
 Name.......: common.py
 Descr......: Application properties.
 Author.....: Gregg Midon
 Date.......: 8/26/2018
-'''
+"""
 
 # constants
 rosterfiles = '*.ROS'
