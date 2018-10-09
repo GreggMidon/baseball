@@ -1,5 +1,5 @@
 '''
-Name.......: season_ldr.py
+Name.......: load_season.py
 Descr......: Script to manage processing of game files (event, team, roster).
 Author.....: Gregg Midon
 Date.......: 8/26/2018
