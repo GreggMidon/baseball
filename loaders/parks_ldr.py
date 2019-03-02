@@ -1,5 +1,5 @@
 from db.sqlrepo import *
-from db.db_funcs import getconnection
+from db.db_funcs import get_connection
 
 def main():
     print('Begin...')
@@ -10,7 +10,7 @@ def main():
     src = open(fname, 'r')
 
     # connect to database
-    conn = getconnection()
+    conn = get_connection()
     cur = conn.cursor()
 
     # iterate through the file
