@@ -95,3 +95,5 @@ insert into prod.ev_dtl (game_ndx, seq_num, event_str, event_cd, mod_cd1, mod_cd
 '''
 dtl_ins_templ = "(%(game_ndx)s,%(seq_num)s,%(event_str)s,%(event_cd)s,%(mod_cd1)s,%(mod_cd2)s,%(mod_cd3)s,%(ra_1)s,%(ra_2)s,%(ra_3)s)"
 dtl_pg_sz = 100
+
+evt_err_sql = "select game_ndx,seq_num,event_str,event_bld from prod.ev_parse_errs"
