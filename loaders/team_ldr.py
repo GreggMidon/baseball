@@ -5,7 +5,7 @@ Author.....: Gregg Midon
 Date.......: 8/26/2018
 '''
 from db.sqlrepo import *
-from db.db_funcs import getconnection
+from db.db_funcs import get_connection
 import datetime
 
 
@@ -15,7 +15,7 @@ def load(file, season):
     tfil = open(file, 'r')
 
     # connect to database
-    conn = getconnection()
+    conn = get_connection()
     cur = conn.cursor()
 
     # iterate through the file
