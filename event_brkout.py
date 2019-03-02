@@ -6,7 +6,7 @@ Date.......: 8/26/2018
 '''
 #import argparse
 from loaders.evt_dtl_ldr import parse_event
-from db.db_funcs import getconnection, gameindexlist
+from db.db_funcs import get_connection, retr_game_index_list
 
 def main():
 
@@ -19,8 +19,8 @@ def main():
     #parse_event(getconnection(), 'ANA')
 
     # by number range
-    conn = getconnection()
-    games = gameindexlist(conn)
+    conn = get_connection()
+    games = retr_game_index_list(conn)
 
     for game in games:
         game_ndx = game[0]
