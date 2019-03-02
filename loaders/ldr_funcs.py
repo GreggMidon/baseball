@@ -1,6 +1,6 @@
 
 
-def inforec(info):
+def info_rec(info):
     return '{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}'.format(
             info['id'],
             info['visteam'],
