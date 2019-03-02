@@ -5,13 +5,13 @@ Author.....: Gregg Midon
 Date.......: 8/26/2018
 '''
 import datetime
-from db.db_funcs import getconnection, gameindex, insertinfo, insertstart, insertplay, insertsub, insertdata
+from db.db_funcs import get_connection, retr_game_index, insert_info_rec, insert_start_rec, insert_play_rec, insert_sub_rec, insert_data_rec
 
 
 def load(file, season):
 
     # connect to database
-    conn = getconnection()
+    conn = get_connection()
 
     # source file
     tfil = open(file, 'r')
@@ -28,16 +28,16 @@ def load(file, season):
         if rectyp == 'id':
             id = recordList[1]
             #print(' -> ' + id)
-            index = gameindex(conn)
+            index = retr_game_index(conn)
 
             if firsttime:
                 firsttime = False
             else:
-                insertinfo(conn, _info)
-                insertstart(conn, _start)
-                insertsub(conn, _sub)
-                insertdata(conn, _data)
-                insertplay(conn, _play)
+                insert_info_rec(conn, _info)
+                insert_start_rec(conn, _start)
+                insert_sub_rec(conn, _sub)
+                insert_data_rec(conn, _data)
+                insert_play_rec(conn, _play)
 
             # setup for next game
             _info = dict()
@@ -103,11 +103,11 @@ def load(file, season):
             d['entry_dt'] = datetime.datetime.now()
             _data.append(d)
 
-    insertinfo(conn, _info)
-    insertstart(conn, _start)
-    insertsub(conn, _sub)
-    insertdata(conn, _data)
-    insertplay(conn, _play)
+    insert_info_rec(conn, _info)
+    insert_start_rec(conn, _start)
+    insert_sub_rec(conn, _sub)
+    insert_data_rec(conn, _data)
+    insert_play_rec(conn, _play)
 
     # close communication with the database
     conn.close()
