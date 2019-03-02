@@ -12,7 +12,7 @@ import loaders.event_ldr as el
 from util.common import *
 
 
-def readlist(filelist):
+def read_list(file_list):
 
     # prepare the regex's
     roster_pattern = re.compile(regex_roster)
@@ -20,7 +20,7 @@ def readlist(filelist):
     team_pattern = re.compile(regex_team)
     matched = False
 
-    for file in filelist:
+    for file in file_list:
         print('Reading/Processing file = {}'.format(file.name))
 
         match = roster_pattern.search(file.name)
