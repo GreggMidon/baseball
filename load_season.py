@@ -6,34 +6,34 @@ Date.......: 8/26/2018
 '''
 import argparse
 from fileio.filesys import *
-from fileio.fileproc import readlist
+from fileio.fileproc import read_list
 
 
 def main(args):
 
     # get a list of file names to process
     if args.staging:
-        readlist(geteventfilesstaged())
+        read_list(get_event_files_staged())
 
     elif args.season > 0:
 
         if args.fa:
-            readlist(getamerleagevents(args.season))
+            read_list(get_al_events(args.season))
 
         elif args.fn:
-            readlist(getnatlleagevents(args.season))
+            read_list(get_nl_events(args.season))
 
         elif args.fr:
-            readlist(getrosterfiles(args.season))
+            read_list(get_roster_files(args.season))
 
         elif args.ft:
-            readlist(getteamfile(args.season))
+            read_list(get_team_file(args.season))
 
         elif args.fall:
-            readlist(getallseasonfiles(args.season))
+            read_list(get_all_season_files(args.season))
 
         else:
-            readlist(geteventfiles(args.season))
+            read_list(get_event_files(args.season))
 
 
 if __name__ == '__main__':
