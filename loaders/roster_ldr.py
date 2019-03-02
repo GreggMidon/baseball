@@ -5,14 +5,14 @@ Author.....: Gregg Midon
 Date.......: 8/26/2018
 '''
 from db.sqlrepo import *
-from db.db_funcs import getconnection, insertroster
+from db.db_funcs import get_connection, insert_roster_rec
 import datetime
 
 
 def load(file, season):
 
     # connect to database
-    conn = getconnection()
+    conn = get_connection()
 
     # open file for source data
     rfil = open(file, 'r')
@@ -36,7 +36,7 @@ def load(file, season):
         _ros.append(d)
 
     # insert into Roster table
-    insertroster(conn, _ros)
+    insert_roster_rec(conn, _ros)
 
     # close communication with the database
     conn.close()
