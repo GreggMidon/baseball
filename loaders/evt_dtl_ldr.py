@@ -6,7 +6,7 @@ Date.......: 10/03/2018
 """
 import re
 import datetime
-from db.db_funcs import gameevents, inserteventdtl
+from db.db_funcs import retr_game_events, insert_event_dtl_rec
 from util.common import *
 
 
@@ -21,7 +21,7 @@ def parse_event(conn, index):
     f_err = open(stagedir + "err.txt", "a")
 
     # retrieve events for specified game
-    rows = gameevents(conn, index)
+    rows = retr_game_events(conn, index)
 
     # loop thru events
     _dtls = []
@@ -105,7 +105,7 @@ def parse_event(conn, index):
             f_err.write(out)
 
     # insert into db
-    inserteventdtl(conn, _dtls)
+    insert_event_dtl_rec(conn, _dtls)
 
     # close the db connection
     f_err.close()
