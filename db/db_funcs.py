@@ -4,28 +4,32 @@ from util.common import *
 from db.sqlrepo import *
 import datetime
 
-def getconnection():
+def get_connection():
     return psycopg2.connect(constring)
 
 
-def gameevents(conn, game_ndx):
+def retr_game_events(conn, game_ndx):
     cur = conn.cursor()
     cur.execute(evt_sel_sql,(game_ndx,))
     return cur.fetchall()
 
 
-def gameindex(conn):
+def retr_game_index(conn):
     cur = conn.cursor()
     cur.execute("select nextval('prod.mstr_gm_seq')")
     return cur.fetchone()
 
-def gameindexlist(conn):
+def retr_game_index_list(conn):
     cur = conn.cursor()
     cur.execute(evt_nsel_sql)
     return cur.fetchall()
 
+def retr_game_event_errs(conn):
+    cur = conn.cursor()
+    cur.execute(evt_err_sql)
+    return cur.fetchall()
 
-def insertinfo(conn, info):
+def insert_info_rec(conn, info):
     cur = conn.cursor()
 
     # insert into game_hdr
@@ -44,42 +48,42 @@ def insertinfo(conn, info):
     cur.close()
 
 
-def insertstart(conn, datalist):
+def insert_start_rec(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, start_ins_sql, datalist, template=start_ins_templ, page_size=start_pg_sz)
     conn.commit()
     cur.close()
 
 
-def insertplay(conn, datalist):
+def insert_play_rec(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, play_ins_sql, datalist, template=play_ins_templ, page_size=play_pg_sz)
     conn.commit()
     cur.close()
 
 
-def insertsub(conn, datalist):
+def insert_sub_rec(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, sub_ins_sql, datalist, template=sub_ins_templ, page_size=sub_pg_sz)
     conn.commit()
     cur.close()
 
 
-def insertdata(conn, datalist):
+def insert_data_rec(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, data_ins_sql, datalist, template=data_ins_templ, page_size=data_pg_sz)
     conn.commit()
     cur.close()
 
 
-def insertroster(conn, datalist):
+def insert_roster_rec(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, roster_ins_sql, datalist, template=roster_ins_templ, page_size=roster_pg_sz)
     conn.commit()
     cur.close()
 
 
-def  inserteventdtl(conn, datalist):
+def  insert_event_dtl_rec(conn, datalist):
     cur = conn.cursor()
     execute_values(cur, dtl_ins_sql, datalist, template=dtl_ins_templ, page_size=dtl_pg_sz)
     conn.commit()
