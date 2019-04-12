@@ -45,7 +45,7 @@ if __name__ == '__main__':
     parser.add_argument('-fn', help='Process National League event files (*.EVN).', action='store_true')
     parser.add_argument('-fr', help='Process Roster files (*.ROS).', action='store_true')
     parser.add_argument('-ft', help='Process Team files (TEAMyyyy).', action='store_true')
-    parser.add_argument('-fall', help='Process all event files (*.EVA & *.EVN', action='store_true')
+    parser.add_argument('-fall', help='Process all event files (*.EVA & *.EVN)', action='store_true')
 
     args = parser.parse_args()
 
