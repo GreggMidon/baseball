@@ -27,10 +27,10 @@ def main():
         print('parsing game index -> {}'.format(game_ndx))
         parse_event(conn, game_ndx)
 
-
     print('Event Parser: end.')
 
     conn.close()
+
 
 if __name__ == '__main__':
 
